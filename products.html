@@ -36,7 +36,7 @@
 
 
 
-<body>
+<body onload="getProductList()">
     <header class="d-flex justify-content-between d-lg-none">
         <div class="btn-group">
   		<button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -91,92 +91,11 @@
     <footer>
     </footer>
 
-<script>
-
-
-var request = new XMLHttpRequest();
-
-request.open("GET", "http://localhost:3000/api/cameras");
-request.responseType = "json";
-request.send();
-
-class Productlist {
-   constructor(id, name, price, description, url) {
-      this.id = id;
-      this.name = name;
-      this.price = price;
-      this.description = description;
-      this.url = url;
-      }
-}
-
-
-let article1 = new Productlist(111, 'camera1', 100, 'Very nice 1', "http://localhost:3000/images/vcam_1.jpg");
-let article2 = new Productlist(222, 'camera2', 100, 'Very nice 2', "http://localhost:3000/images/vcam_1.jpg");
-let article3 = new Productlist(333, 'camera3', 100, 'Very nice 3', "http://localhost:3000/images/vcam_1.jpg");
-let article4 = new Productlist(444, 'camera4', 100, 'Very nice 4', "http://localhost:3000/images/vcam_1.jpg");
-
-let Productarray = [article1, article2, article3, article4]
-
-
-
-var section = document.getElementById("products");
-
-for (var i = 0; i <Productarray.length; i++) {
-
-let newDiv = document.createElement('div');
-newDiv.classList.add('productlist');
-
-let newLink = document.createElement('a');
-newLink.href = "index.html";
-
-let newTitle = document.createElement('h2');
-newTitle.innerText = Productarray[i].name;
-
-let newDescription = document.createElement('p');
-newDescription.classList.add('text-justify');
-newDescription.innerText = Productarray[i].description;
-
-let newImage = document.createElement('img');
-newImage.classList.add('imageproduct');
-newImage.src = Productarray[i].url;
 
 
 
 
-
-let newButton = document.createElement('a');
-newButton.classList.add('button');
-newButton.setAttribute("id", Productarray[i].id);
-newButton.innerText = 'cHOOSE THIS OPTION';
-newButton.href = "confirmation.html";
-newButton.addEventListener('click', saveselection());
-
-
-function saveselection() {
-    var mychoice = document.getElementById(event.target.id);
-    localStorage.setItem("mychoice", mychoice);
-};
-
-
-newLink.append(newTitle);
-newLink.append(newDescription);
-newLink.append(newImage);
-section.append(newDiv);
-newDiv.append(newLink);
-newDiv.append(newButton);
-
-}
-
-
-
-
-
-
-
-
-    
- </script>   
+<script src="main.js"></script>   
 
 </body>
 </html>
