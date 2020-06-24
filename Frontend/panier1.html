@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+  <meta charset="UTF-8">
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objects</title>
+</head>
+ 
+
+
+<body>
+ 
+  <div class="container bg-white p-5 mt-5">
+    	<!-- Logo -->
+    	<div>
+    	</div>
+
+	<header>
+	</header>
+
+	<section>
+	</section>
+
+
+
+
+    
+  
+  <!-- Footer -->
+  
+<!-- Code javaScript -->
+
+
+  <script src="code.js"></script>
+  <script>
+	var header = document.querySelector('header');
+	var section = document.querySelector('section');
+
+	var requestURL = 'http://localhost:3000/api/cameras';
+	var request = new XMLHttpRequest();
+
+	request.open('GET', requestURL);
+
+	request.responseType = 'json';
+	request.send();
+
+	request.onload = function() {
+  	var products = request.response;
+  	populateHeader(products);
+  	showHeroes(products);
+	}
+
+
+
+	function populateHeader(jsonObj) {
+  	var myH1 = document.createElement('h1');
+  	myH1.textContent = jsonObj['name'];
+  	header.appendChild(myH1);
+
+  	var myPara = document.createElement('p');
+  	myPara.textContent = 'Model: ' + jsonObj['name'] + jsonObj['price'];
+  	header.appendChild(myPara);
+	}
+
+
+
+function showHeroes(jsonObj) {
+  var products= jsonObj['members'];
+      
+  for (var i = 0; i < heroes.length; i++) {
+    var myArticle = document.createElement('article');
+    var myH2 = document.createElement('h2');
+    var myPara1 = document.createElement('p');
+    var myPara2 = document.createElement('p');
+    var myPara3 = document.createElement('p');
+    var myList = document.createElement('ul');
+
+    myH2.textContent = heroes[i].name;
+    myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+    myPara2.textContent = 'Age: ' + heroes[i].age;
+    myPara3.textContent = 'Superpowers:';
+        
+    var superPowers = heroes[i].powers;
+    for (var j = 0; j < superPowers.length; j++) {
+      var listItem = document.createElement('li');
+      listItem.textContent = superPowers[j];
+      myList.appendChild(listItem);
+    }
+
+    myArticle.appendChild(myH2);
+    myArticle.appendChild(myPara1);
+    myArticle.appendChild(myPara2);
+    myArticle.appendChild(myPara3);
+    myArticle.appendChild(myList);
+
+    section.appendChild(myArticle);
+  }
+}
+
+  </script>
+</body>
+ 
+</html>
